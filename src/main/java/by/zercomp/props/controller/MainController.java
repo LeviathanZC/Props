@@ -10,13 +10,11 @@ import java.util.ResourceBundle;
 
 public class MainController {
 
-    private static final String DEFAULT = "";
-
     public static void main(final String[] args) throws IOException {
         System.out.println("1-Russian, 2-German, 3-French, 4-Swedish, Other-Default");
         int input = readConsole();
-        LocaleType choosenType = chooseType(input);
-        Locale current = new Locale(choosenType.lang, choosenType.country);
+        LocaleType chooseType = chooseType(input);
+        Locale current = new Locale(chooseType.lang, chooseType.country);
         ResourceBundle resources = ResourceBundle.getBundle("property.text", current);
         final String comma = ", ";
         final String first = resources.getString("first");
