@@ -14,7 +14,7 @@ public class MainController {
         System.out.println("1-Russian, 2-German, 3-French, 4-Swedish, Other-Default");
         int input = readConsole();
         LocaleType chooseType = chooseType(input);
-        Locale current = new Locale(chooseType.lang, chooseType.country);
+        Locale current = new Locale(chooseType.getLang(), chooseType.getCountry());
         ResourceBundle resources = ResourceBundle.getBundle("property.text", current);
         final String comma = ", ";
         final String first = resources.getString("first");

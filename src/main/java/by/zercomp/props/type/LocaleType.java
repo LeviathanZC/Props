@@ -6,8 +6,8 @@ public enum LocaleType {
     FRANCE("FR", "FR"), SWEDEN("SV", "SE"),
     DEFAULT("", "");
 
-    public String lang;
-    public String country;
+    String lang;
+    String country;
 
     LocaleType(String lang, String country) {
         this.lang = lang;
