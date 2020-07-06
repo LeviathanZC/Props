@@ -1,3 +1,7 @@
+package by.zercomp.props.controller;
+
+import by.zercomp.props.type.LocaleType;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,19 +10,13 @@ import java.util.ResourceBundle;
 
 public class MainController {
 
-    private static final String BELARUS = "BY";
-    private static final String RUSSIAN = "RU";
+    private static final String DEFAULT = "";
 
     public static void main(final String[] args) throws IOException {
-        System.out.println("1-Default, 2-Russian");
-        int input = readNumber();
-        String country = "";
-        String lang = "";
-        if(input == 2) {
-            country = BELARUS;
-            lang = RUSSIAN;
-        }
-        Locale current = new Locale(lang, country);
+        System.out.println("1-Russian, 2-German, 3-French, 4-Swedish, Other-Default");
+        int input = readConsole();
+        LocaleType choosenType = chooseType(input);
+        Locale current = new Locale(choosenType.lang, choosenType.country);
         ResourceBundle resources = ResourceBundle.getBundle("property.text", current);
         final String comma = ", ";
         final String first = resources.getString("first");
@@ -31,9 +29,28 @@ public class MainController {
                                 .append(third));
     }
 
-    private static int readNumber() throws IOException {
+    private static int readConsole() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         return Integer.parseInt(reader.readLine());
     }
 
+    private static LocaleType chooseType(int input) {
+        switch (input) {
+            case 1: {
+                return LocaleType.BELARUS;
+            }
+            case 2: {
+                return LocaleType.GERMANY;
+            }
+            case 3: {
+                return LocaleType.FRANCE;
+            }
+            case 4: {
+                return LocaleType.SWEDEN;
+            }
+            default: {
+                return LocaleType.DEFAULT;
+            }
+        }
+    }
 }
